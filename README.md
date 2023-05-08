@@ -30,6 +30,7 @@ The design of the app was based on this Figma mockup and is optimized for iPhone
 * A sign-up process was implemented. ✔️
 * Deployment ✔️
 ## The app has been deployed and is available at (https://playgreen-web.web.app). 
+* ( you should inspect the page and run it in responsive mode using the iPhone XR layout. This will ensure that the application is displayed in the correct format and that all features and functionalities are easily accessible.)
 ## You can use the folowing Log-In info:
 - adminplaygreen@gmail.com
 - admin123
