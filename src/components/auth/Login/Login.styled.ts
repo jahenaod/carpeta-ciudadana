@@ -49,6 +49,7 @@ export const ErrorMessage = styled.p`
   color: red;
   margin-top: 0.5rem;
 `;
+
 export const ForgotPassword = styled.p`
   font-weight: 400;
   font-size: 16px;
@@ -71,6 +72,7 @@ export const SubmitButton = styled.button`
   border-radius: 25px;
   border: none;
 `;
+
 export const ButtonContainer = styled.div`
   display: flex;
   flex-direction: row;
