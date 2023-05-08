@@ -31,5 +31,4 @@ export const LoginDescription = styled.p`
   color: ${({ theme }) => theme.mode.text2};
   opacity: 0.8;
   margin: 0;
-  margin-bottom: 2.3rem;
 `;

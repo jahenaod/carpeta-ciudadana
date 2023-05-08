@@ -25,12 +25,6 @@ import { fetchSportImage, fetchSportsData } from "../../utils/SportsData";
 import ThemeToggleButton from "../../components/features/ThemeToggleButton/ThemeToggleButton";
 import { useTheme } from "../../styles/themeContext";
 
-// Import the refactored functions
-
-interface League {
-  strSport: string;
-}
-
 export const DashboardPage = () => {
   const { theme } = useTheme();
   const isDarkThemeActive = theme === "dark";
@@ -64,10 +58,10 @@ export const DashboardPage = () => {
 
   useEffect(() => {
     const fetchData = async () => {
-      setLoading(true); // Set loading state to true while fetching the image
+      setLoading(true);
       const image = await fetchSportImage(sport);
       setSportImage(image);
-      setLoading(false); // Set loading state to false after the image is fetched
+      setLoading(false);
     };
 
     fetchData();
@@ -84,17 +78,14 @@ export const DashboardPage = () => {
       const userDocRef = doc(db, "users", user.uid);
 
       try {
-        // Get the user document from Firestore
         const userDoc = await getDoc(userDocRef);
 
-        // If the document doesn't exist, create a new one
         if (!userDoc.exists()) {
           await setDoc(userDocRef, {
             likedSports: liked ? [sport] : [],
             dislikedSports: !liked ? [sport] : [],
           });
         } else {
-          // Otherwise, update the existing document
           const data = userDoc.data();
           const newLikedSports = liked
             ? [...data.likedSports, sport]
@@ -109,7 +100,6 @@ export const DashboardPage = () => {
           });
         }
 
-        // Add the liked or disliked sport to a new collection along with the image URL
         const sportCollectionRef = collection(db, "users", user.uid, "sports");
         await addDoc(sportCollectionRef, {
           sport,

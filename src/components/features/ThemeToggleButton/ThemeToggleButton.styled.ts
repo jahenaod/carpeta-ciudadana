@@ -1,7 +1,5 @@
-// src/pages/DashboardPage/DashboardPage.styled.ts
 import styled from "styled-components";
 
-// Add this new style for the ThemeToggleButton
 export const StyledThemeToggleButton = styled.button`
   position: absolute;
   width: 3rem;

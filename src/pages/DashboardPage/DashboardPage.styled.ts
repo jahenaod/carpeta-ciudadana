@@ -75,14 +75,21 @@ export const CardWrapper = styled.div`
 
 export const SportName = styled.p`
   position: absolute;
+  width: 100%;
+  height: 35px;
   bottom: 0;
   left: 0;
-  background-color: transparent;
+  background: linear-gradient(
+    360deg,
+    rgba(0, 0, 0, 1) 0%,
+    rgba(8, 8, 8, 1) 55%,
+    rgba(255, 255, 255, 0) 100%
+  );
   color: white;
-  padding: 10px;
   margin: 0;
   padding: 1.2rem;
   font-weight: 700;
   font-size: 34px;
   line-height: 122.02%;
+  padding-top: 50px;
 `;

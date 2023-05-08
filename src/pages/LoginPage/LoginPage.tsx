@@ -15,7 +15,6 @@ export const LoginPage = () => {
       <LoginDescription>
         Lorem ipsum dolor sit amet, consectetur adipiscing elit.
       </LoginDescription>
-
       <Login />
     </LoginPageWrapper>
   );

@@ -1,22 +1,23 @@
 import styled from "styled-components";
-import { Link } from "react-router-dom";
 
 export const HistoryWrapper = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-
   min-height: 100vh;
   background-color: ${({ theme }) => theme.mode.background};
   color: ${({ theme }) => theme.mode.text};
   padding: 0rem 3rem 2rem 3rem;
   padding-bottom: 8rem;
+  transition: all 0.2s ease-in-out;
 `;
+
 export const HistoryCardsWrapper = styled.div`
   display: flex;
   flex-direction: column;
   gap: 1.4rem;
 `;
+
 export const ArrowButton = styled.button`
   background-color: transparent;
   border: none;
@@ -29,6 +30,7 @@ export const HistoryTextWrapper = styled.div`
   display: flex;
   flex-direction: column;
 `;
+
 export const HistoryTitle = styled.h1`
   font-weight: 700;
   font-size: 42px;
@@ -39,6 +41,7 @@ export const HistoryTitle = styled.h1`
   padding-bottom: 0;
   margin: 0;
 `;
+
 export const HistoryText = styled.p`
   font-weight: 400;
   font-size: 18px;
@@ -47,6 +50,7 @@ export const HistoryText = styled.p`
   opacity: 0.8;
   margin: 0.5rem 0;
 `;
+
 export const HistoryDate = styled.p`
   font-weight: 600;
   font-size: 14px;
@@ -92,6 +96,5 @@ export const SportName = styled.div`
   font-size: 24px;
   line-height: 122.02%;
   letter-spacing: -0.045em;
-
   color: #fefefe;
 `;

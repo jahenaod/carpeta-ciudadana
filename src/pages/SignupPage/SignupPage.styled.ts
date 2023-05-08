@@ -27,7 +27,6 @@ export const SignupDescription = styled.p`
   font-size: 18px;
   line-height: 148.02%;
   max-width: 20rem;
-  height: 5.4rem;
   color: ${({ theme }) => theme.mode.text2};
   opacity: 0.8;
   margin: 0;

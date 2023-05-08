@@ -1,4 +1,3 @@
-// src/styles/themeContext.tsx
 import React, { createContext, useContext, useState } from "react";
 import { DefaultTheme } from "styled-components";
 

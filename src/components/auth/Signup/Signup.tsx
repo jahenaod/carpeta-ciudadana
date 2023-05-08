@@ -44,14 +44,12 @@ const Signup: React.FC = () => {
     }
 
     try {
-      // Create a new user in Firebase Authentication
       const { user } = await createUserWithEmailAndPassword(
         auth,
         email,
         password
       );
 
-      // Create a new document for the user in Firestore
       const userDocRef = doc(db, "users", user.uid);
       await setDoc(userDocRef, {
         email: email,
@@ -59,7 +57,6 @@ const Signup: React.FC = () => {
         dislikedSports: [],
       });
 
-      // Redirect the user to the dashboard page
       window.location.href = "/dashboard";
     } catch (err) {
       if (err instanceof Error) {
