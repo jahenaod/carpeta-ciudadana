@@ -14,6 +14,8 @@ export const LoginForm = styled.form`
 
 export const Input = styled.input`
   padding: 0.5rem;
+  padding-top: 1.5rem;
+  padding-left: 1.2rem;
   border-radius: 4px;
   border: 1px solid #ccc;
   width: 330px;
@@ -22,6 +24,7 @@ export const Input = styled.input`
   border: 1px solid rgba(255, 255, 255, 0.06);
   border-radius: 18px;
   box-sizing: border-box;
+  color: ${({ theme }) => theme.mode.text2};
 
   &:focus {
     outline: none;
