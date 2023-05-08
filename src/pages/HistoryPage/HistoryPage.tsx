@@ -82,6 +82,20 @@ export const HistoryPage = () => {
     fetchImages();
   }, [likedSports, dislikedSports]);
 
+  const shuffleArray = (array: any[]) => {
+    for (let i = array.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [array[i], array[j]] = [array[j], array[i]];
+    }
+  };
+
+  const combinedSports = [
+    ...likedSports.map((sport) => ({ sport, isLiked: true })),
+    ...dislikedSports.map((sport) => ({ sport, isLiked: false })),
+  ];
+
+  shuffleArray(combinedSports);
+
   return (
     <HistoryWrapper>
       <Link to="/dashboard">
@@ -90,47 +104,39 @@ export const HistoryPage = () => {
         </ArrowButton>
       </Link>
       <HistoryTextWrapper>
-        <HistoryTitle>History</HistoryTitle>
+        <HistoryTitle>History</HistoryTitle>{" "}
         <HistoryText>
           Lorem ipsum dolor sit amet, consectetur adipiscing elit.
         </HistoryText>
         <HistoryDate>17 december</HistoryDate>
       </HistoryTextWrapper>
       <HistoryCardsWrapper>
-        {likedSports
-          .reduce<string[]>((acc, curr, index) => {
-            acc.push(curr);
-            if (dislikedSports[index]) {
-              acc.push(dislikedSports[index]);
-            }
-            return acc;
-          }, [])
-          .map((sport, index) => {
-            const isLiked = likedSports.includes(sport);
-            return (
-              <CardWrapper
-                key={`${isLiked ? "liked" : "disliked"}-${sport}-${index}`}
+        {combinedSports.map((item, index) => {
+          const { sport, isLiked } = item;
+          return (
+            <CardWrapper
+              key={`${isLiked ? "liked" : "disliked"}-${sport}-${index}`}
+            >
+              <ImageContainer
+                style={{
+                  backgroundImage: `url(${sportsImages[sport] || ""})`,
+                }}
               >
-                <ImageContainer
-                  style={{
-                    backgroundImage: `url(${sportsImages[sport] || ""})`,
-                  }}
-                >
-                  <SportName>{sport}</SportName>
-                </ImageContainer>
+                <SportName>{sport}</SportName>
+              </ImageContainer>
 
-                <IconContainer>
-                  {isLiked ? (
-                    <DislikeIcon color={"#EA596F"} />
-                  ) : (
-                    <HeartIcon
-                      color={isDarkThemeActive ? "#FFFFFF" : "#1A5BE1"}
-                    />
-                  )}
-                </IconContainer>
-              </CardWrapper>
-            );
-          })}
+              <IconContainer>
+                {isLiked ? (
+                  <HeartIcon
+                    color={isDarkThemeActive ? "#FFFFFF" : "#1A5BE1"}
+                  />
+                ) : (
+                  <DislikeIcon color={"#EA596F"} />
+                )}
+              </IconContainer>
+            </CardWrapper>
+          );
+        })}
       </HistoryCardsWrapper>
 
       <NavBar />
