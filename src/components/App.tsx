@@ -11,7 +11,7 @@ import {
   ThemeProvider as StyledThemeProvider,
   createGlobalStyle,
 } from "styled-components";
-import { ThemeProvider, useTheme } from "../styles/themeContext";
+import { useTheme } from "../styles/themeContext";
 
 const GlobalStyle = createGlobalStyle`
   body {

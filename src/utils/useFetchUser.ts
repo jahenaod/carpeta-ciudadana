@@ -19,7 +19,7 @@ const useFetchUser = (
     return () => {
       unsubscribe();
     };
-  }, []);
+  }, [setUser]);
 
   useEffect(() => {
     const fetchUserPreferences = async () => {
