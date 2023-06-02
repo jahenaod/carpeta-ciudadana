@@ -8,7 +8,7 @@ import {
   Button,
 } from "./Dashboard.styled";
 
-const Dashboard: React.FC = () => {
+export const Dashboard: React.FC = () => {
   const [selectedFile, setSelectedFile] = useState<File | null>(null);
   const [fileMetadata, setFileMetadata] = useState<any>(null);
   const [userId, setUserId] = useState("");

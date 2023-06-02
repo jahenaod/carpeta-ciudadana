@@ -5,7 +5,8 @@ import { HomePage } from "../pages/HomePage/HomePage";
 import { LoginPage } from "../pages/LoginPage/LoginPage";
 import { SignupPage } from "../pages/SignupPage/SignupPage";
 import { NoPage } from "../pages/NoPage/NoPage";
-import {
+import {Dashboard } from "../pages/Dashboard/DashboardPage" 
+import { 
   ThemeProvider as StyledThemeProvider,
   createGlobalStyle,
 } from "styled-components";
@@ -56,6 +57,7 @@ function App() {
             <Route path="/login" element={<LoginPage />} />
             <Route path="/signup" element={<SignupPage />} />
             <Route path="*" element={<NoPage />} />
+            <Route path="/dashboard" element={<Dashboard />} />
           </Routes>
         </BrowserRouter>
       </div>
