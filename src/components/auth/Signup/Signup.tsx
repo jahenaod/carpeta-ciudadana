@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { createUserWithEmailAndPassword } from "firebase/auth";
 import { auth, db } from "../../../services/firebase";
 import { doc, setDoc } from "firebase/firestore";
+import axios from 'axios';
 import {
   ButtonContainer,
   ErrorMessage,
@@ -17,6 +18,10 @@ const Signup: React.FC = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
+  const [name, setName] = useState("");
+  const [address, setAddress] = useState("");
+  const [nationalId, setNationalId] = useState("");
+
   const [error, setError] = useState("");
   const [emailValid, setEmailValid] = useState(true);
   const [passwordValid, setPasswordValid] = useState(true);
@@ -44,20 +49,58 @@ const Signup: React.FC = () => {
     }
 
     try {
-      const { user } = await createUserWithEmailAndPassword(
-        auth,
-        email,
-        password
+      const validateResponse = await fetch(
+        `http://169.51.195.62:30174/apis/validateCitizen/${nationalId}`
       );
 
-      const userDocRef = doc(db, "users", user.uid);
-      await setDoc(userDocRef, {
-        email: email,
-        likedSports: [],
-        dislikedSports: [],
-      });
+      if (validateResponse.status === 204) {
+        const { user } = await createUserWithEmailAndPassword(
+          auth,
+          email,
+          password
+        );
 
-      window.location.href = "/dashboard";
+        const userDocRef = doc(db, "users", user.uid);
+        await setDoc(userDocRef, {
+          email: email,
+        });
+
+        // Prepare data to be sent to the API
+        const data = {
+          "id": nationalId,
+          "name": name,
+          "address": address,
+          "email": email,
+          "operatorId": 10003,
+          "operatorName": "Operador Ciudadano"
+        };
+
+        // Make the API request
+        /*
+        const response = await fetch(
+          "http://169.51.195.62:30174/apis/registerCitizen",
+          {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify(data),
+          }
+          */
+         const response = await axios.post("http://169.51.195.62:30174/apis/registerCitizen/", data);
+        console.log(response);
+
+        if (response.status == 201) {
+          // Redirect to the login if registration and API request are successful
+          window.location.href = "/Login";
+        } else {
+          throw new Error("Registration failed.");
+        }
+      } else if (validateResponse.status === 200) {
+        throw new Error("Usuario ya registrado");
+      } else {
+        throw new Error("Failed to validate user.");
+      }
     } catch (err) {
       if (err instanceof Error) {
         setError(err.message);
@@ -98,6 +141,30 @@ const Signup: React.FC = () => {
           />
         </InputWrapper>
         {!confirmPasswordValid && <p>Passwords do not match.</p>}
+        <InputWrapper>
+          <PseudoLabel>Name</PseudoLabel>
+          <Input
+            type="text"
+            value={name}
+            onChange={(e) => setName(e.target.value)}
+          />
+        </InputWrapper>
+        <InputWrapper>
+          <PseudoLabel>Address</PseudoLabel>
+          <Input
+            type="text"
+            value={address}
+            onChange={(e) => setAddress(e.target.value)}
+          />
+        </InputWrapper>
+        <InputWrapper>
+          <PseudoLabel>National ID</PseudoLabel>
+          <Input
+            type="text"
+            value={nationalId}
+            onChange={(e) => setNationalId(e.target.value)}
+          />
+        </InputWrapper>
         <ButtonContainer>
           <SubmitButton type="submit">Sign up</SubmitButton>
           <GoogleAuthButton />

@@ -5,12 +5,11 @@ import {
   LoginPageHeading,
   LoginPageWrapper,
 } from "./LoginPage.styled";
-import ThemeToggleButton from "../../components/features/ThemeToggleButton/ThemeToggleButton";
+
 
 export const LoginPage = () => {
   return (
     <LoginPageWrapper>
-      <ThemeToggleButton />
       <LoginPageHeading>Welcome</LoginPageHeading>
       <LoginDescription>
         Lorem ipsum dolor sit amet, consectetur adipiscing elit.

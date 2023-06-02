@@ -1,18 +1,33 @@
-import { initializeApp } from "firebase/app";
-import { getAuth } from "firebase/auth";
+import { initializeApp, getApps } from "firebase/app";
+import { getDownloadURL, getStorage, ref, uploadBytesResumable } from "firebase/storage";
 import { getFirestore } from "firebase/firestore";
+import { getAuth } from "firebase/auth";
 
 const firebaseConfig = {
-  apiKey: "AIzaSyD2vK0WdfVPMmxW1P6ktH3N7l1YB--vZtE",
-  authDomain: "playgreen-web.firebaseapp.com",
-  projectId: "playgreen-web",
-  storageBucket: "playgreen-web.appspot.com",
-  messagingSenderId: "179567952227",
-  appId: "1:179567952227:web:0e397349d8b509eae39356",
+  apiKey: "AIzaSyBfy9NoCd-Ia_ydretZ6dOPOE-As8pwsjE",
+  authDomain: "carpeta-ciudadana-9ff85.firebaseapp.com",
+  projectId: "carpeta-ciudadana-9ff85",
+  storageBucket: "carpeta-ciudadana-9ff85.appspot.com",
+  messagingSenderId: "136204855758",
+  appId: "1:136204855758:web:1d3f64ea9a165679e0239f",
+  measurementId: "G-B4K3JBMJRT"
 };
 
-const app = initializeApp(firebaseConfig);
+let app;
+if (!getApps().length) {
+  app = initializeApp(firebaseConfig);
+} else {
+  app = getApps()[0];
+}
+
 const auth = getAuth(app);
 const db = getFirestore(app);
+const storage = getStorage(app);
 
-export { app, auth, db };
+export const uploadFile = async (file: File): Promise<string> => {
+  const storageRef = ref(storage, file.name);
+  await uploadBytesResumable(storageRef, file);
+  return getDownloadURL(storageRef);
+};
+
+export { app, auth, db, storage };

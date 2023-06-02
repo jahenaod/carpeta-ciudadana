@@ -6,12 +6,10 @@ import {
   Heading,
   HomePageWrapper,
 } from "./HomePage.styled";
-import ThemeToggleButton from "../../components/features/ThemeToggleButton/ThemeToggleButton";
 
 export const HomePage: React.FC = () => {
   return (
     <HomePageWrapper>
-      <ThemeToggleButton />
       <Heading>HomePage</Heading>
       <ButtonWrapper>
         <Link to="/login">

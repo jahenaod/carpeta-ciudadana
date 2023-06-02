@@ -5,8 +5,6 @@ import { HomePage } from "../pages/HomePage/HomePage";
 import { LoginPage } from "../pages/LoginPage/LoginPage";
 import { SignupPage } from "../pages/SignupPage/SignupPage";
 import { NoPage } from "../pages/NoPage/NoPage";
-import { DashboardPage } from "../pages/DashboardPage/DashboardPage";
-import { HistoryPage } from "../pages/HistoryPage/HistoryPage";
 import {
   ThemeProvider as StyledThemeProvider,
   createGlobalStyle,
@@ -57,8 +55,6 @@ function App() {
             <Route path="/home" element={<HomePage />} />
             <Route path="/login" element={<LoginPage />} />
             <Route path="/signup" element={<SignupPage />} />
-            <Route path="/dashboard" element={<DashboardPage />} />
-            <Route path="/history" element={<HistoryPage />} />
             <Route path="*" element={<NoPage />} />
           </Routes>
         </BrowserRouter>
